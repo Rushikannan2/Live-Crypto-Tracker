@@ -19,7 +19,7 @@ app.use(helmet());
 
 // CORS configuration
 app.use(cors({
-  origin: config.CORS_ORIGIN,
+  origin: process.env.NODE_ENV === 'production' ? 'https://your-frontend-domain.com' : 'http://localhost:3000',
   credentials: true
 }));
 
@@ -36,7 +36,8 @@ app.get('/health', (req, res) => {
     status: 'OK',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
-    environment: config.NODE_ENV
+    environment: config.NODE_ENV,
+    database: mongoose.connection.readyState === 1 ? 'Connected' : 'Disconnected'
   });
 });
 
@@ -46,8 +47,9 @@ app.use('/api/crypto', cryptoRoutes);
 // Root endpoint
 app.get('/', (req, res) => {
   res.json({
-    message: 'Web Scraper API Server',
+    message: 'Cryptocurrency Scraper API Server - Production Mode',
     version: '1.0.0',
+    mode: 'Production - MongoDB Connected',
     endpoints: {
       health: '/health',
       crypto: '/api/crypto',
@@ -150,12 +152,14 @@ const startServer = async () => {
     // Start HTTP server
     const server = app.listen(config.PORT, () => {
       console.log(`
-🚀 Web Scraper Server Started Successfully!
+🚀 Cryptocurrency Scraper Server Started Successfully!
 📡 Server running on port ${config.PORT}
 🌍 Environment: ${config.NODE_ENV}
 📊 Health check: http://localhost:${config.PORT}/health
 🔗 API base: http://localhost:${config.PORT}/api
 ⏰ Crypto scraping schedule: Every hour
+💾 Database: MongoDB Atlas Connected
+🎯 Ready to fetch live cryptocurrency data!
       `);
     });
     

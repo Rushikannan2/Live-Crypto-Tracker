@@ -4,7 +4,7 @@ import { CssBaseline, Box } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Pages
-import HomePage from './pages/HomePage';
+import CryptoDashboard from './pages/CryptoDashboard';
 
 // Create Material-UI theme
 const theme = createTheme({
@@ -84,8 +84,8 @@ function App() {
       <Router>
         <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/home" element={<HomePage />} />
+            <Route path="/" element={<CryptoDashboard />} />
+            <Route path="/crypto" element={<CryptoDashboard />} />
             {/* Add more routes here as needed */}
           </Routes>
         </Box>
