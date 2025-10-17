@@ -9,7 +9,6 @@ import {
   CircularProgress,
 } from '@mui/material';
 import {
-  TrendingUp as TrendingUpIcon,
   Refresh as RefreshIcon,
 } from '@mui/icons-material';
 
