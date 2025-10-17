@@ -1,7 +1,7 @@
 // Configuration file for the server
 module.exports = {
   // MongoDB Atlas Connection
-  MONGODB_URI: 'mongodb+srv://kannanrushi05_db_user:V9HCHCbKVRB14uEq@cluster0.p2iuqpr.mongodb.net/webscraper_db?retryWrites=true&w=majority&appName=Cluster0',
+  MONGODB_URI: 'mongodb+srv://kannanrushi05_db_user:V9HCHCbKVRB14uEq@cluster0.p2iuqpr.mongodb.net/web?retryWrites=true&w=majority&appName=Cluster0',
   
   // Server Configuration
   PORT: process.env.PORT || 5000,
